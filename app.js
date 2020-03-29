@@ -166,9 +166,39 @@ Vampire.find({ $and: [{victims:{$gt: 150}},{victims: {$lt: 500}}]})
 /////////////////////////////////////////////////
 // ### Select by exists or does not exist
 
+
+// Q1
+Vampire.find({title: { $exists: true}})
+
+// Q2
+Vampire.find({victims: { $exists: false}})
+
+// Q3
+Vampire.find({ $and: [{victims:{$exists: false}},{title: {$exists: true}}]})
+
+// Q4
+Vampire.find({ $and: [{victims:{$exists: false}},{victims: {$gt: 1000}}]})
+
+
 /////////////////////////////////////////////////
 // ### Select with OR
+// Q1
+Vampire.find({ location: {$in: ['New York, New York, US', 'New Orleans, Louisiana, US']}})
 
+// Q2
+Vampire.find({ loves: {$in: ['brooding', 'being tragic']}})
+
+
+// Q3
+Vampire.find({ $or: [{victims: {$gt: 1000}}, { loves: 'marshmallows'}] })
+
+// Q4
+Vampire.find({ $or: [{hair_color: 'red'}, {eye_color: "green"}] })
+.then(v => {
+  console.log(v)
+}).catch(err => {
+  console.error(err)
+})
 /////////////////////////////////////////////////
 //### Select objects that match one of several values
 
