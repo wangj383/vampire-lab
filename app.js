@@ -219,11 +219,6 @@ Vampire.find({ $and:[ {loves: "fancy cloaks"},{loves: {$nin: [ 'top hats', "virg
 
 // Q1
 Vampire.find({ $and:[ {loves: "ribbons"},{eye_color: {$nin: ["brown"]}}]})
-// .then(v => {
-//   console.log(v)
-// }).catch(err => {
-//   console.error(err)
-// })
 
 // Q2
 Vampire.find({ location: {$nin: ['Rome']}})
@@ -237,6 +232,15 @@ Vampire.find({ victims: {$lte: 200 }})
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // ## REPLACE
+Vampire.findOneAndUpdate(
+  {name: "Claudia"}, 
+  {$set: {name:'Eve' }},
+  {new: true},
+).then(v => {
+  console.log(v)
+}).catch(err => {
+  console.error(err)
+})
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
