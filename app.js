@@ -194,16 +194,45 @@ Vampire.find({ $or: [{victims: {$gt: 1000}}, { loves: 'marshmallows'}] })
 
 // Q4
 Vampire.find({ $or: [{hair_color: 'red'}, {eye_color: "green"}] })
-.then(v => {
-  console.log(v)
-}).catch(err => {
-  console.error(err)
-})
+// .then(v => {
+//   console.log(v)
+// }).catch(err => {
+//   console.error(err)
+// })
 /////////////////////////////////////////////////
 //### Select objects that match one of several values
+// Q1
+Vampire.find({ loves: {$in: ['frilly shirtsleeves','frilly collars']} })
+
+
+// Q2
+Vampire.find({ loves: 'brooding'})
+
+// Q3
+Vampire.find({ loves: {$in: [ "appearing innocent", "trickery", "lurking in rotting mansions" , "R&B music"]} })
+
+// Q4
+Vampire.find({ $and:[ {loves: "fancy cloaks"},{loves: {$nin: [ 'top hats', "virgin blood"]} } ]})
 
 /////////////////////////////////////////////////
 //### Negative Selection
+
+// Q1
+Vampire.find({ $and:[ {loves: "ribbons"},{eye_color: {$nin: ["brown"]}}]})
+// .then(v => {
+//   console.log(v)
+// }).catch(err => {
+//   console.error(err)
+// })
+
+// Q2
+Vampire.find({ location: {$nin: ['Rome']}})
+
+// Q3
+Vampire.find({ loves: {$nin: ["fancy cloaks", "frilly shirtsleeves", "appearing innocent", "being tragic", "brooding"]}})
+
+// Q4
+Vampire.find({ victims: {$lte: 200 }})
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
